@@ -4,6 +4,7 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Camera } from './camera';
+import { HttpInterceptor } from '../http';
 
 @Injectable()
 export class CameraService {
