@@ -17,3 +17,10 @@ def cams(request):
             "url": cam.get_url(),
         })
     return {'cams': lis}
+
+
+@view_config(route_name='cams_stream', permission='authenticated')
+def cams_stream(request):
+    request.response.headers['X-Accel-Redirect'] = (
+        str("/protected/cam/%s" % request.matchdict['id']))
+    return request.response
