@@ -20,14 +20,14 @@ CONFIG = {
             "name": "Salon 1",
             "host": "127.0.0.1",
             "port": 8080,
-            "public_url": None,
+            "public_url": 'http://rpi/cams/0',
         },
         {
             "src": 1,
             "name": "Salon 2",
             "host": "127.0.0.1",
             "port": 8081,
-            "public_url": None,
+            "public_url": 'http://rpi/cams/1',
         }
     ]
 }
