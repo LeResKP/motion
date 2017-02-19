@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response } from '@angular/http';
+import { Http, ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, XHRBackend } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 
 
@@ -21,4 +21,9 @@ export class HttpInterceptor extends Http {
         return Observable.throw(error);
       });
   }
+}
+
+
+export function HttpInterceptorFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions) {
+  return new HttpInterceptor(xhrBackend, requestOptions)
 }

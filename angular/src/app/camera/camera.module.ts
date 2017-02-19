@@ -3,7 +3,9 @@ import { Http, HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 
 import { CameraService } from './camera.service';
 
-import { HttpInterceptor } from '../http';
+import { HttpInterceptorFactory } from '../http';
+
+
 
 
 @NgModule({
@@ -12,9 +14,8 @@ import { HttpInterceptor } from '../http';
     CameraService,
     {
       provide: Http,
-      useFactory: (xhrBackend: XHRBackend, requestOptions: RequestOptions) => new HttpInterceptor(
-        xhrBackend, requestOptions,),
-        deps: [XHRBackend, RequestOptions]
+      useFactory: HttpInterceptorFactory,
+      deps: [XHRBackend, RequestOptions]
     }
   ]
 })
