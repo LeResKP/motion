@@ -7,6 +7,11 @@ class Camera(object):
         self.port = kw['port']
         self.public_url = kw['public_url']
 
+    def get_url(self):
+        if self.public_url:
+            return self.public_url
+        return '%s:%s' % (self.host, self.port)
+
 
 CONFIG = {
     "cams": [
