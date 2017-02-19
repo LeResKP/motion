@@ -8,7 +8,7 @@ from ..models import MyModel
 from ..cam_config import CAMS
 
 
-@view_config(route_name='cams', renderer='json')
+@view_config(route_name='cams', renderer='json', permission='authenticated')
 def cams(request):
     lis = []
     for cam in CAMS:
