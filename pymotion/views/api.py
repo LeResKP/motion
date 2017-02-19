@@ -13,7 +13,6 @@ def cams(request):
     lis = []
     for cam in CAMS:
         lis.append({
-            "src": cam.src,
             "name": cam.name,
             "url": cam.get_url(),
         })
