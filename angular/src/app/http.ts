@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, XHRBackend } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 
+import { URLS } from './urls';
+
 
 // https://github.com/angular/angular/blob/master/modules/%40angular/http/src/http.ts
 @Injectable()
@@ -15,7 +17,7 @@ export class HttpInterceptor extends Http {
     return super.request(url, options).catch(
       (error: Response) => {
         if (error.status === 403) {
-          location.href = '/login';
+          location.href = URLS.login;
           return Observable.empty();
         }
         return Observable.throw(error);

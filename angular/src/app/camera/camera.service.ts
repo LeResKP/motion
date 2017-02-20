@@ -4,7 +4,7 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Camera } from './camera';
-import { HttpInterceptor } from '../http';
+import { API_URLS } from '../urls';
 
 @Injectable()
 export class CameraService {
@@ -15,14 +15,8 @@ export class CameraService {
   constructor(private http: Http) { }
 
   getCameras(): Promise<Camera[]> {
-    return this.http.get(this.camerasUrl)
+    return this.http.get(API_URLS.cams)
                .toPromise()
-               .then(response => response.json().cams as Camera[])
-               .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+               .then(response => response? response.json().cams as Camera[]: []);
   }
 }
