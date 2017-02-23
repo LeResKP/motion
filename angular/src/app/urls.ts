@@ -8,5 +8,16 @@ export const URLS = {
 }
 
 export const API_URLS = {
-  cams: BASE_HREF + 'api/cams',
+  cams: {
+    info: BASE_HREF + 'api/cams',
+    enable: BASE_HREF + 'api/cams/{cameraId}/enable/{value}',
+    detection: BASE_HREF + 'api/cams/{cameraId}/detection/{value}',
+    upload: BASE_HREF + 'api/cams/{cameraId}/upload/{value}',
+  }
+}
+
+
+export function url_replacer(url: string, values: {}) {
+  Object.keys(values).forEach(key => url = url.replace('{' + key + '}', values[key]));
+  return url;
 }

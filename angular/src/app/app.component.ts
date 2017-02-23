@@ -21,4 +21,19 @@ export class AppComponent implements OnInit {
       (cameras: Camera[]) => this.cameras = cameras);
   }
 
+  enabledChange(ev: any, camera:Camera) {
+    this.cameraService.enable(camera, ev.checked).then(
+      (value: boolean) => camera.enabled=value);
+  }
+
+  detectionChange(ev: any, camera:Camera) {
+    this.cameraService.detection(camera, ev.checked).then(
+      (value: boolean) => camera.detection_enabled=value);
+  }
+
+  uploadChange(ev: any, camera:Camera) {
+    this.cameraService.upload(camera, ev.checked).then(
+      (value: boolean) => camera.upload_enabled=value);
+  }
+
 }
