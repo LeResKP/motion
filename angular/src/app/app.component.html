@@ -1,8 +1,23 @@
-<div fxLayout="column" fxLayout.gt-xs="row">
-  <div *ngFor="let cam of cameras" fxFlex>
-    <img [src]="cam.url" />
-    <md-slide-toggle (change)="enabledChange($event, cam)" [checked]="cam.enabled">Enable</md-slide-toggle>
-    <md-slide-toggle (change)="detectionChange($event, cam)" [checked]="cam.detection_enabled" [disabled]="!cam.enabled">Detection enable</md-slide-toggle>
-    <md-slide-toggle (change)="uploadChange($event, cam)" [checked]="cam.upload_enabled" [disabled]="!cam.enabled || !cam.detection_enabled">Upload enable</md-slide-toggle>
+<div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="start end">
+  <div *ngFor="let cam of cameras" class="cam-item" fxFlex>
+    <md-card>
+      <md-card-header>
+        <md-card-title>{{cam.name}}</md-card-title>
+      </md-card-header>
+      <img md-card-image [src]="cam.url" />
+      <md-card-actions>
+        <md-slide-toggle
+          (change)="enabledChange($event, cam)"
+          [checked]="cam.enabled">Enable</md-slide-toggle>
+        <md-slide-toggle
+          (change)="detectionChange($event, cam)"
+          [checked]="cam.detection_enabled"
+          [disabled]="!cam.enabled">Detection enable</md-slide-toggle>
+        <md-slide-toggle
+          (change)="uploadChange($event, cam)"
+          [checked]="cam.upload_enabled"
+          [disabled]="!cam.enabled || !cam.detection_enabled">Upload enable</md-slide-toggle>
+      </md-card-actions>
+    </md-card>
   </div>
 </div>
