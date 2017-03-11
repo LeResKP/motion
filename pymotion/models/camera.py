@@ -17,9 +17,9 @@ class Camera(Base):
     src = Column(String(255), nullable=False)
     host = Column(String(255), nullable=False)
     port = Column(String(255), nullable=False)
-    public_url = Column(String(255), nullable=False)
+    public_url = Column(String(255), nullable=True)
 
-    enabled = Column(Boolean, nullable=False, default=False)
+    enabled = Column(Boolean, nullable=False, default=True)
     detection_enabled = Column(Boolean, nullable=False, default=False)
     upload_enabled = Column(Boolean, nullable=False, default=False)
 

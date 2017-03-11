@@ -22,6 +22,8 @@ def includeme(config):
     config.add_route('home', '/')
     config.add_route('cams', '/api/cams')
     config.add_route('cams_stream', '/api/cams/{id}/stream')
+    config.add_route('cams_id', '/api/cams/{id}',
+                     custom_predicates=[exist_camera])
 
     config.add_route(
         'cams_enable', '/api/cams/{id}/enable/{value}',
