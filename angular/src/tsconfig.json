@@ -9,5 +9,9 @@
     "lib": [ "es2015", "dom" ],
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true
-  }
+  },
+  "files": [
+    "app/app.module.ts",
+    "main.ts"
+  ]
 }

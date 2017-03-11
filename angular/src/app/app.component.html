@@ -1,5 +1,24 @@
-<div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="start end">
-  <div *ngFor="let cam of cameras" class="cam-item" fxFlex>
+<md-toolbar>
+  <span class="fill-remaining-space"></span>
+
+  <button md-icon-button [mdMenuTriggerFor]="menu" class="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <button md-menu-item (click)="refresh()">
+      <md-icon>refresh</md-icon>
+      <span>Refresh</span>
+    </button>
+    <button md-menu-item (click)="addCamera()">
+      <md-icon>add</md-icon>
+      <span>Add new camera</span>
+    </button>
+  </md-menu>
+</md-toolbar>
+
+
+<div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="start end" fxLayoutWrap="wrap">
+  <div *ngFor="let cam of cameras" class="cam-item" fxFlex.gt-xs="50">
     <md-card>
       <md-card-header>
         <md-card-title>{{cam.name}}</md-card-title>
@@ -17,6 +36,8 @@
           (change)="uploadChange($event, cam)"
           [checked]="cam.upload_enabled"
           [disabled]="!cam.enabled || !cam.detection_enabled">Upload enable</md-slide-toggle>
+         <button md-button (click)="editCamera(cam)">Edit</button>
+         <button md-button (click)="deleteCamera(cam)">Delete</button>
       </md-card-actions>
     </md-card>
   </div>

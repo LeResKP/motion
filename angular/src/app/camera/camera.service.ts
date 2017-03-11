@@ -10,7 +10,6 @@ import { API_URLS, url_replacer } from '../urls';
 export class CameraService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private camerasUrl = '/api/cams';
 
   constructor(private http: Http) { }
 
@@ -24,11 +23,37 @@ export class CameraService {
                .then(response => response? response.json().cams as Camera[]: []);
   }
 
+  getCamera(id:number): Promise<Camera> {
+    const url: string = url_replacer(API_URLS.cams.id, {cameraId: id});
+    return this.http.get(url)
+               .toPromise()
+               .then(response=>response?response.json().camera as Camera: null);
+  }
+
+  update(camera: Camera): Promise<Camera> {
+    const url: string = url_replacer(API_URLS.cams.id, {cameraId: camera.id});
+    return this.http.put(url, JSON.stringify(camera), {headers: this.headers})
+               .toPromise()
+               .then(() => camera);
+  }
+
+  delete(camera: Camera): Promise<boolean> {
+    const url: string = url_replacer(API_URLS.cams.id, {cameraId: camera.id});
+    return this.http.delete(url, {headers: this.headers})
+               .toPromise()
+               .then(() => true);
+  }
+
+  create(camera: Camera): Promise<Camera> {
+    return this.http.post(API_URLS.cams.info, JSON.stringify(camera), {headers: this.headers})
+               .toPromise()
+               .then(() => camera);
+  }
+
+
   _enable(url: string, camera: Camera, value: boolean) {
     url = url_replacer(url, {cameraId: camera.id, value: this.bool2int(value)});
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    return this.http.post(url, {}, options)
+    return this.http.post(url, {}, {headers: this.headers})
                .toPromise()
                .then((res: Response) => res.json()['value'])
                // TODO: display message

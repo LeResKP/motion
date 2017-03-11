@@ -10,6 +10,7 @@ export const URLS = {
 export const API_URLS = {
   cams: {
     info: BASE_HREF + 'api/cams',
+    id: BASE_HREF + 'api/cams/{cameraId}',
     enable: BASE_HREF + 'api/cams/{cameraId}/enable/{value}',
     detection: BASE_HREF + 'api/cams/{cameraId}/detection/{value}',
     upload: BASE_HREF + 'api/cams/{cameraId}/upload/{value}',
