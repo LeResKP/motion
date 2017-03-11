@@ -17,7 +17,7 @@ export class EditComponent implements OnInit {
   camera: Camera;
   cameraForm: FormGroup;
 
-  formErrors: {} = {};
+  formErrors: any = {};
 
   private readonly validationMessages: {} = {
     'required': 'The field is required.',

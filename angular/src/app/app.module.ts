@@ -13,7 +13,7 @@ import { AppComponent }  from './app.component';
   imports:      [
     BrowserModule,
     CameraModule,
-    FlexLayoutModule.forRoot(),
+    FlexLayoutModule,
     MaterialModule.forRoot(),
   ],
   declarations: [ AppComponent ],
