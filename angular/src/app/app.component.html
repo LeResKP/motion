@@ -37,7 +37,7 @@
           [checked]="cam.upload_enabled"
           [disabled]="!cam.enabled || !cam.detection_enabled">Upload enable</md-slide-toggle>
          <button md-button (click)="editCamera(cam)">Edit</button>
-         <button md-button (click)="deleteCamera(cam)">Delete</button>
+         <button md-button pymConfirm="Are you sure you want to delete the camera?" (confirm)="deleteCamera($event, cam)">Delete</button>
       </md-card-actions>
     </md-card>
   </div>
