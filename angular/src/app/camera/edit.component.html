@@ -1,63 +1,68 @@
 <form [formGroup]="cameraForm" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()" novalidate>
 
-  <div>
-    <md-input-container [dividerColor]="!(formErrors.name)? 'primary': 'warn'">
-      <input mdInput placeholder="Name" formControlName="name">
-    </md-input-container>
+  <div md-dialog-content>
+    <div>
+      <md-input-container [dividerColor]="!(formErrors.name)? 'primary': 'warn'">
+        <input mdInput placeholder="Name" formControlName="name">
+      </md-input-container>
 
-    <div *ngIf="formErrors.name" class="alert alert-danger">
-        {{ formErrors.name }}
+      <div *ngIf="formErrors.name" class="alert alert-danger">
+          {{ formErrors.name }}
+      </div>
     </div>
-  </div>
 
-  <div>
-    <md-input-container [dividerColor]="(!formErrors.src)? 'primary': 'warn'">
-      <input mdInput placeholder="Source" formControlName="src">
-    </md-input-container>
+    <div>
+      <md-input-container [dividerColor]="(!formErrors.src)? 'primary': 'warn'">
+        <input mdInput placeholder="Source" formControlName="src">
+      </md-input-container>
 
-    <div *ngIf="formErrors.src" class="alert alert-danger">
-        {{ formErrors.src }}
+      <div *ngIf="formErrors.src" class="alert alert-danger">
+          {{ formErrors.src }}
+      </div>
     </div>
-  </div>
 
-  <div>
-    <md-input-container [dividerColor]="(!formErrors.host)? 'primary': 'warn'">
-      <input mdInput placeholder="Host" formControlName="host">
-    </md-input-container>
+    <div>
+      <md-input-container [dividerColor]="(!formErrors.host)? 'primary': 'warn'">
+        <input mdInput placeholder="Host" formControlName="host">
+      </md-input-container>
 
-    <div *ngIf="formErrors.host" class="alert alert-danger">
-        {{ formErrors.host }}
+      <div *ngIf="formErrors.host" class="alert alert-danger">
+          {{ formErrors.host }}
+      </div>
     </div>
-  </div>
 
-  <div>
-    <md-input-container [dividerColor]="(!formErrors.port)? 'primary': 'warn'">
-      <input mdInput placeholder="Port" formControlName="port">
-    </md-input-container>
+    <div>
+      <md-input-container [dividerColor]="(!formErrors.port)? 'primary': 'warn'">
+        <input mdInput placeholder="Port" formControlName="port">
+      </md-input-container>
 
-    <div *ngIf="formErrors.port" class="alert alert-danger">
-        {{ formErrors.port }}
+      <div *ngIf="formErrors.port" class="alert alert-danger">
+          {{ formErrors.port }}
+      </div>
     </div>
-  </div>
 
-  <div>
-    <md-input-container [dividerColor]="(!formErrors.public_url)? 'primary': 'warn'">
-      <input mdInput placeholder="Public url" formControlName="public_url">
-    </md-input-container>
+    <div>
+      <md-input-container [dividerColor]="(!formErrors.public_url)? 'primary': 'warn'">
+        <input mdInput placeholder="Public url" formControlName="public_url">
+      </md-input-container>
 
-    <div *ngIf="formErrors.public_url" class="alert alert-danger">
-        {{ formErrors.public_url }}
+      <div *ngIf="formErrors.public_url" class="alert alert-danger">
+          {{ formErrors.public_url }}
+      </div>
     </div>
   </div>
 
 
   <br>
   <br>
-  <button md-button color="primary" (click)="closeDialog()">
-    Cancel
-  </button>
-  <button md-raised-button [disabled]="!cameraForm.valid" type="submit" color="primary">
-    Save
-  </button>
+  <div md-dialog-actions>
+    <button md-button color="primary" (click)="closeDialog()">
+      Cancel
+    </button>
+    <span class="fill-remaining-space"></span>
+    <button md-raised-button [disabled]="!cameraForm.valid" type="submit" color="primary">
+      Save
+    </button>
+  </div>
 
 </form>
