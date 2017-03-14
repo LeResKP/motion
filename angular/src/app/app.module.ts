@@ -7,14 +7,17 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { CameraModule } from './camera/camera.module';
 
 import { AppComponent }  from './app.component';
+import { ConfirmModule }  from './confirm/confirm.module';
 
 
 @NgModule({
   imports:      [
     BrowserModule,
-    CameraModule,
     FlexLayoutModule,
     MaterialModule.forRoot(),
+
+    CameraModule,
+    ConfirmModule,
   ],
   declarations: [ AppComponent ],
   bootstrap:    [ AppComponent ]
