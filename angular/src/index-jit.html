@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html itemscope itemtype="http://schema.org/Article">
   <head>
     <title>PyMotion</title>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
     <link href="node_modules/google-fonts/material-icons.css" rel="stylesheet">
     <link href="node_modules/@angular/material/core/theming/prebuilt/indigo-pink.css" rel="stylesheet">
 
+
     <!-- Polyfill(s) for older browsers -->
     <script src="node_modules/core-js/client/shim.min.js"></script>
 
@@ -17,8 +18,23 @@
 
     <script src="systemjs.config.js"></script>
     <script>
-      System.import('main.js').catch(function(err){ console.error(err); });
     </script>
+    <script>
+      function start() {
+        gapi.load('auth2', function() {
+            console.log('init');
+          auth2 = gapi.auth2.init({
+            client_id: '682542060334-jbvvv7b86p1hcsdno4pg1i2srnnbrntg.apps.googleusercontent.com',
+            // Scopes to request in addition to 'profile' and 'email'
+            //scope: 'additional_scope'
+          });
+          auth2.then(function() {
+            System.import('main.js').catch(function(err){ console.error(err); });
+            });
+        });
+      }
+    </script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start"></script>
   </head>
 
   <body>

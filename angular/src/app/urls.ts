@@ -14,6 +14,9 @@ export const API_URLS = {
     enable: BASE_HREF + 'api/cams/{cameraId}/enable/{value}',
     detection: BASE_HREF + 'api/cams/{cameraId}/detection/{value}',
     upload: BASE_HREF + 'api/cams/{cameraId}/upload/{value}',
+  },
+  auth: {
+    login: BASE_HREF + 'api/auth/login'
   }
 }
 
