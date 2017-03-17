@@ -59,7 +59,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
     });
   }
 
-  deleteCamera(camera:Camera) {
+  deleteCamera(ev: any, camera:Camera) {
     this.cameraService.delete(camera).then(
       () => this.fetch()
     );
