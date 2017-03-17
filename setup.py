@@ -18,7 +18,8 @@ requires = [
     'zope.sqlalchemy',
     'waitress',
     'oauth2client',
-    "deform",
+    'deform',
+    'google-api-python-client',
     ]
 
 tests_require = [

@@ -4,7 +4,8 @@ from . import models
 def any_of(segment_name, *allowed):
     def predicate(info, request):
         if info['match'][segment_name] in allowed:
-            info['match'][segment_name] = bool(int(info['match'][segment_name]))
+            info['match'][segment_name] = bool(
+                int(info['match'][segment_name]))
             return True
     return predicate
 
@@ -20,6 +21,7 @@ def exist_camera(info, request):
 def includeme(config):
     config.add_static_view('static', 'static', cache_max_age=3600)
     config.add_route('home', '/')
+    config.add_route('auth_login', '/api/auth/login')
     config.add_route('cams', '/api/cams')
     config.add_route('cams_stream', '/api/cams/{id}/stream')
     config.add_route('cams_id', '/api/cams/{id}',
