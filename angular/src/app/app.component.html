@@ -16,29 +16,4 @@
   </md-menu>
 </md-toolbar>
 
-
-<div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="start end" fxLayoutWrap="wrap">
-  <div *ngFor="let cam of cameras" class="cam-item" fxFlex.gt-xs="50">
-    <md-card>
-      <md-card-header>
-        <md-card-title>{{cam.name}}</md-card-title>
-      </md-card-header>
-      <img md-card-image [src]="cam.url" />
-      <md-card-actions>
-        <md-slide-toggle
-          (change)="enabledChange($event, cam)"
-          [checked]="cam.enabled">Enable</md-slide-toggle>
-        <md-slide-toggle
-          (change)="detectionChange($event, cam)"
-          [checked]="cam.detection_enabled"
-          [disabled]="!cam.enabled">Detection enable</md-slide-toggle>
-        <md-slide-toggle
-          (change)="uploadChange($event, cam)"
-          [checked]="cam.upload_enabled"
-          [disabled]="!cam.enabled || !cam.detection_enabled">Upload enable</md-slide-toggle>
-         <button md-button (click)="editCamera(cam)">Edit</button>
-         <button md-button pymConfirm="Are you sure you want to delete the camera?" (confirm)="deleteCamera($event, cam)">Delete</button>
-      </md-card-actions>
-    </md-card>
-  </div>
-</div>
+<router-outlet></router-outlet>

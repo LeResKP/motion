@@ -2,6 +2,7 @@ import { Injectable }    from '@angular/core';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import { Subject} from 'rxjs/Rx';
 
 import { Camera } from './camera';
 import { API_URLS, url_replacer } from '../urls';
@@ -9,9 +10,12 @@ import { API_URLS, url_replacer } from '../urls';
 @Injectable()
 export class CameraService {
 
+  public cameraChanged: Subject<number>;
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    this.cameraChanged = new Subject<number>();
+  }
 
   bool2int(b: boolean) {
     return b? 1: 0;

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MdDialog } from '@angular/material';
 
-import { Camera } from './camera/camera';
 import { CameraService } from './camera/camera.service';
 import { EditComponent } from './camera/edit.component';
 
@@ -12,57 +11,15 @@ import { EditComponent } from './camera/edit.component';
   selector: 'my-app',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
-  cameras: Camera[];
-
+export class AppComponent {
 
   constructor(public dialog: MdDialog, private cameraService: CameraService) {}
-
-
-  ngOnInit() {
-    this.fetch();
-  }
-
-  fetch() {
-    this.cameraService.getCameras().then(
-      (cameras: Camera[]) => this.cameras = cameras);
-  }
-
-  enabledChange(ev: any, camera:Camera) {
-    this.cameraService.enable(camera, ev.checked).then(
-      (value: boolean) => camera.enabled=value);
-  }
-
-  detectionChange(ev: any, camera:Camera) {
-    this.cameraService.detection(camera, ev.checked).then(
-      (value: boolean) => camera.detection_enabled=value);
-  }
-
-  uploadChange(ev: any, camera:Camera) {
-    this.cameraService.upload(camera, ev.checked).then(
-      (value: boolean) => camera.upload_enabled=value);
-  }
-
-  editCamera(camera:Camera) {
-    let dialogRef = this.dialog.open(EditComponent, {data: {id: camera.id}});
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === true) {
-        this.fetch();
-      }
-    });
-  }
-
-  deleteCamera(camera:Camera) {
-    this.cameraService.delete(camera).then(
-      () => this.fetch()
-    );
-  }
 
   addCamera() {
     let dialogRef = this.dialog.open(EditComponent, {data: {}});
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
-        this.fetch();
+        this.cameraService.cameraChanged.next();
       }
     });
   }
@@ -70,5 +27,4 @@ export class AppComponent implements OnInit {
   refresh() {
     window.location.reload();
   }
-
 }

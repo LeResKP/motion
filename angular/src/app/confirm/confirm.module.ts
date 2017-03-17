@@ -13,7 +13,7 @@ import { ConfirmComponent, ConfirmDirective }  from './confirm';
   declarations: [ ConfirmDirective, ConfirmComponent ],
   exports: [
     ConfirmDirective,
-  ]
+  ],
   entryComponents: [
     ConfirmComponent,
   ],
