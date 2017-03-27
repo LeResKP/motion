@@ -18,20 +18,8 @@
 
     <script src="systemjs.config.js"></script>
     <script>
+      System.import('main.js').catch(function(err){ console.error(err); });
     </script>
-    <script>
-      function start() {
-        gapi.load('auth2', function() {
-          auth2 = gapi.auth2.init({
-            client_id: '682542060334-jbvvv7b86p1hcsdno4pg1i2srnnbrntg.apps.googleusercontent.com',
-          });
-          auth2.then(function() {
-            System.import('main.js').catch(function(err){ console.error(err); });
-            });
-        });
-      }
-    </script>
-    <script src="https://apis.google.com/js/client:platform.js?onload=start"></script>
   </head>
 
   <body>

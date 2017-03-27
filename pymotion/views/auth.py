@@ -1,11 +1,21 @@
 import pyramid.httpexceptions as exc
-from pyramid.security import remember
+from pyramid.security import remember, unauthenticated_userid
 from pyramid.view import view_config, view_defaults
 
 import sqlalchemy.orm.exc as sqla_exc
 from oauth2client import client
 
 from ..models import User
+
+
+@view_config(context=exc.HTTPForbidden, renderer='json')
+def forbidden_view(context, request):
+    if unauthenticated_userid(request):
+        request.response.status_int = 403
+        return {'msg': "You don't have the right to access this resource"}
+
+    request.response.status_int = 401
+    return {'msg': "You are not loggedin"}
 
 
 @view_defaults(route_name='auth_login', renderer='json')

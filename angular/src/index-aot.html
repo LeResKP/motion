@@ -18,17 +18,5 @@
   <body>
     <my-app>Loading ...</my-app>
   </body>
-   <script>
-     function start() {
-       gapi.load('auth2', function() {
-         auth2 = gapi.auth2.init({
-           client_id: '682542060334-jbvvv7b86p1hcsdno4pg1i2srnnbrntg.apps.googleusercontent.com',
-           // Scopes to request in addition to 'profile' and 'email'
-           //scope: 'additional_scope'
-         });
-       });
-     }
-   </script>
-   <script src="https://apis.google.com/js/client:platform.js?onload=start"></script>
    <script src="build.js"></script>
 </html>
