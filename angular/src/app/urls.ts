@@ -8,8 +8,20 @@ export const API_URLS = {
     detection: BASE_HREF + 'api/cams/{cameraId}/detection/{value}',
     upload: BASE_HREF + 'api/cams/{cameraId}/upload/{value}',
   },
+  user: {
+    info: BASE_HREF + 'api/users',
+    id: BASE_HREF + 'api/users/{userId}',
+  },
   auth: {
     login: BASE_HREF + 'api/auth/login'
+  }
+};
+
+
+export const URLS = {
+  'dashboard': '/',
+  'admin': {
+    'users': '/admin/users'
   }
 };
 

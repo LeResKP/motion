@@ -4,6 +4,7 @@ import { MdDialog } from '@angular/material';
 
 import { CameraService } from './camera/camera.service';
 import { EditComponent } from './camera/edit.component';
+import { URLS } from './urls';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { EditComponent } from './camera/edit.component';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+
+  URLS = URLS;
 
   constructor(public dialog: MdDialog, private cameraService: CameraService) {}
 

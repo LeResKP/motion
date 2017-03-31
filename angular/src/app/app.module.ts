@@ -6,6 +6,7 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { CameraModule } from './camera/camera.module';
+import { UserModule } from './user/user.module';
 
 import { AppComponent }  from './app.component';
 import { DashboardComponent }  from './dashboard.component';
@@ -27,6 +28,7 @@ import { HttpInterceptorFactory } from './http';
     MaterialModule.forRoot(),
 
     CameraModule,
+    UserModule,
     ConfirmModule,
     AppRoutingModule,
   ],

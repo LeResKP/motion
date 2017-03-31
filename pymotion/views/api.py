@@ -1,27 +1,12 @@
-from pyramid.response import Response
+"""API for camera
+"""
+
+
 from pyramid.view import view_config, view_defaults
 
-from sqlalchemy.exc import DBAPIError
-
-import deform
+import colander
 
 from ..models import Camera
-
-from ..cam_config import CAMS
-
-
-def errors_to_angular(e):
-    """Make the errors understandable by angular
-    """
-    errors = {}
-    for child in e.error.children:
-        msg = child.msg.lower()
-        if 'is not a number' in msg:
-            msg = 'number'
-        errors[child.node.name] = msg
-    return errors
-
-
 
 
 @view_defaults(route_name='cams', renderer='json',
@@ -49,17 +34,19 @@ class CamerasViews(object):
 
     @view_config(request_method="POST")
     def post(self):
-        from ..forms import camera_form
+        from ..forms import camera_schema, errors_to_angular
         dic = self.request.json_body
         try:
-            data = camera_form.validate(dic.items())
-        except deform.ValidationFailure as e:
+            data = camera_schema.deserialize(dic)
+        except colander.Invalid, e:
             self.request.response.status = 400
-            return {'errors': errors_to_angular(e)}
+            return {'errors': errors_to_angular(e.asdict())}
 
         camera = Camera()
         for field in self.FIELDS:
-            setattr(camera, field, dic[field])
+            if field not in data:
+                continue
+            setattr(camera, field, data[field])
         self.request.dbsession.add(camera)
         return {}
 
@@ -87,16 +74,18 @@ class CameraViews(object):
 
     @view_config(request_method='PUT')
     def put(self):
-        from ..forms import camera_form
+        from ..forms import camera_schema, errors_to_angular
         dic = self.request.json_body
         try:
-            data = camera_form.validate(dic.items())
-        except deform.ValidationFailure as e:
+            data = camera_schema.deserialize(dic)
+        except colander.Invalid, e:
             self.request.response.status = 400
-            return {'errors': errors_to_angular(e)}
+            return {'errors': errors_to_angular(e.asdict())}
 
         for field in self.FIELDS:
-            setattr(self.camera, field, dic[field])
+            if field not in data:
+                continue
+            setattr(self.camera, field, data[field])
         return {}
 
     @view_config(request_method='DELETE')

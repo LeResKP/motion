@@ -18,6 +18,14 @@ def exist_camera(info, request):
         return True
 
 
+def exist_user(info, request):
+    user_id = info['match']['id']
+    user = request.dbsession.query(models.User).get(user_id)
+    if user:
+        info['match']['user'] = user
+        return True
+
+
 def includeme(config):
     config.add_static_view('static', 'static', cache_max_age=3600)
     config.add_route('home', '/')
@@ -26,6 +34,10 @@ def includeme(config):
     config.add_route('cams_stream', '/api/cams/{id}/stream')
     config.add_route('cams_id', '/api/cams/{id}',
                      custom_predicates=[exist_camera])
+
+    config.add_route('users', '/api/users')
+    config.add_route('users_id', '/api/users/{id}',
+                     custom_predicates=[exist_user])
 
     config.add_route(
         'cams_enable', '/api/cams/{id}/enable/{value}',

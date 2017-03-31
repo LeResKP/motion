@@ -1,0 +1,42 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()" novalidate>
+
+  <div md-dialog-content>
+    <div>
+      <md-input-container [dividerColor]="!(formErrors.email)? 'primary': 'warn'">
+        <input mdInput placeholder="email" formControlName="email">
+      </md-input-container>
+
+      <div *ngIf="formErrors.email" class="alert alert-danger">
+          {{ formErrors.email }}
+      </div>
+    </div>
+
+    <div>
+      <md-slide-toggle formControlName="activated">Activated</md-slide-toggle>
+      <div *ngIf="formErrors.activated" class="alert alert-danger">
+          {{ formErrors.activated }}
+      </div>
+    </div>
+
+    <div>
+      <md-slide-toggle formControlName="is_admin">Admin</md-slide-toggle>
+      <div *ngIf="formErrors.is_admin" class="alert alert-danger">
+          {{ formErrors.is_admin }}
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <br>
+  <div md-dialog-actions>
+    <button md-button color="primary" (click)="closeDialog()">
+      Cancel
+    </button>
+    <span class="fill-remaining-space"></span>
+    <button md-raised-button [disabled]="!userForm.valid" type="submit" color="primary">
+      Save
+    </button>
+  </div>
+
+</form>
