@@ -5,7 +5,7 @@
         <md-card-title>{{cam.name}}</md-card-title>
       </md-card-header>
       <img md-card-image [src]="cam.url" />
-      <md-card-actions>
+      <md-card-actions *ngIf="authService.loggedInUser?.is_admin">
         <md-slide-toggle
           (change)="enabledChange($event, cam)"
           [checked]="cam.enabled">Enable</md-slide-toggle>

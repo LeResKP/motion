@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { MdDialog } from '@angular/material';
 
+import { AuthService } from './auth.service';
 import { CameraService } from './camera/camera.service';
 import { EditComponent } from './camera/edit.component';
 import { URLS } from './urls';
@@ -16,7 +17,7 @@ export class AppComponent {
 
   URLS = URLS;
 
-  constructor(public dialog: MdDialog, private cameraService: CameraService) {}
+  constructor(public dialog: MdDialog, private cameraService: CameraService, public authService: AuthService) {}
 
   addCamera() {
     let dialogRef = this.dialog.open(EditComponent, {data: {}});

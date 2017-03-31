@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { MdDialog } from '@angular/material';
 
+import { AuthService } from './auth.service';
 import { Camera } from './camera/camera';
 import { CameraService } from './camera/camera.service';
 import { EditComponent } from './camera/edit.component';
@@ -18,7 +19,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   private cameraSub: Subscription;
 
 
-  constructor(public dialog: MdDialog, private cameraService: CameraService) {}
+  constructor(public dialog: MdDialog, private cameraService: CameraService, public authService: AuthService) {}
 
 
   ngOnInit() {

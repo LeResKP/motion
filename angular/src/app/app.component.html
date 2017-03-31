@@ -9,11 +9,11 @@
       <md-icon>refresh</md-icon>
       <span>Refresh</span>
     </button>
-    <button md-menu-item (click)="addCamera()">
+    <button md-menu-item (click)="addCamera()" *ngIf="authService.loggedInUser?.is_admin">
       <md-icon>add</md-icon>
       <span>Add new camera</span>
     </button>
-    <button md-menu-item [routerLink]="URLS.admin.users">
+    <button md-menu-item [routerLink]="URLS.admin.users" *ngIf="authService.loggedInUser?.is_admin">
       <md-icon>perm_identity</md-icon>
       <span>Users</span>
     </button>

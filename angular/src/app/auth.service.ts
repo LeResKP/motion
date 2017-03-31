@@ -13,6 +13,7 @@ import { API_URLS } from './urls';
 
 export interface User {
   email: string;
+  is_admin: boolean;
 }
 
 

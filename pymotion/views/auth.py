@@ -32,7 +32,10 @@ class AuthView(object):
             return {'msg': "You are not loggedin"}
 
         user = self.request.dbsession.query(User).get(userid)
-        return {'email': user.email}
+        return {
+            'email': user.email,
+            'is_admin': user.is_admin,
+        }
 
     @view_config(request_method="POST")
     def post(self):
@@ -50,6 +53,12 @@ class AuthView(object):
                 email=email, activated=True).one()
         except (sqla_exc.NoResultFound, sqla_exc.MultipleResultsFound):
             raise exc.HTTPUnauthorized()
+        if not user.activated:
+            raise exc.HTTPUnauthorized()
+
         headers = remember(self.request, user.id)
         self.request.response.headerlist.extend(headers)
-        return {'email': email}
+        return {
+            'email': user.email,
+            'is_admin': user.is_admin,
+        }
