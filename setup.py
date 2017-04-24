@@ -1,8 +1,17 @@
 import os
+import re
 
 from setuptools import setup, find_packages
 
+
 here = os.path.abspath(os.path.dirname(__file__))
+# NOTE: don't use pkg_resources.require("pymotion")[0].version to get the
+# version since the version interpreted, for example 0.1-alpha.1 is replaced by
+# 0.1a1
+with open(os.path.join(here, 'pymotion', '__init__.py')) as f:
+    VERSION = re.compile(
+        r".*__version__ = '(.*?)'", re.S
+    ).match(f.read()).group(1)
 with open(os.path.join(here, 'README.txt')) as f:
     README = f.read()
 with open(os.path.join(here, 'CHANGES.txt')) as f:
@@ -20,6 +29,7 @@ requires = [
     'oauth2client',
     'deform',
     'google-api-python-client',
+    'requests',
     ]
 
 tests_require = [
@@ -29,7 +39,7 @@ tests_require = [
     ]
 
 setup(name='pymotion',
-      version='0.0',
+      version=VERSION,
       description='pymotion',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
@@ -54,5 +64,6 @@ setup(name='pymotion',
       main = pymotion:main
       [console_scripts]
       initialize_pymotion_db = pymotion.scripts.initializedb:main
+      initialize_pymotion = pymotion.scripts.get_ng_build:create_ng_build_folder
       """,
       )

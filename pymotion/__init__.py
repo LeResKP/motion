@@ -4,6 +4,8 @@ from pyramid.config import Configurator
 from pyramid.events import NewRequest
 from pyramid.security import Allow, Authenticated
 
+__version__ = '0.0.1-alpha.1'
+
 
 # Allow cross origin in dev
 def add_cors_headers_response_callback(event):
