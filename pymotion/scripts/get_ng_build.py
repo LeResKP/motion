@@ -8,7 +8,7 @@ from pymotion import __version__
 
 
 API_RELEASES_URL = 'https://api.github.com/repos/LeResKP/pymotion/releases'
-NG_BUILD_FOLDER = 'ng-build'
+NG_BUILD_FOLDER = 'ng'
 
 
 def create_ng_build_folder():
