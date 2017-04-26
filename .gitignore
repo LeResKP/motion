@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# sqlite file
+pymotion.sqlite
+
+# google API secret
+client_secret_motion.json
