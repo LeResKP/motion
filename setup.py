@@ -38,6 +38,10 @@ tests_require = [
     'pytest-cov',
     ]
 
+dev_require = [
+    'github3.py',
+]
+
 setup(name='pymotion',
       version=VERSION,
       description='pymotion',
@@ -57,6 +61,7 @@ setup(name='pymotion',
       zip_safe=False,
       extras_require={
           'testing': tests_require,
+          'dev': dev_require,
       },
       install_requires=requires,
       entry_points="""\
