@@ -22,7 +22,11 @@ def create_handler(video_stream):
             while True:
                 img = video_stream.frame
                 ret, jpeg = cv2.imencode('.jpg', img)
-                content = jpeg.tobytes()
+                if hasattr(jpeg, 'tobytes'):
+                    content = jpeg.tostring()
+                else:
+                    # Old numpy version
+                    content = jpeg.tostring()
                 self.wfile.write("--jpgboundary")
                 self.send_header('Content-type', 'image/jpeg')
                 self.send_header('Content-length', str(len(content)))

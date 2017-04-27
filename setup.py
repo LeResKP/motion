@@ -30,13 +30,14 @@ requires = [
     'deform',
     'google-api-python-client',
     'requests',
-    ]
+    'imutils',
+]
 
 tests_require = [
     'WebTest >= 1.3.1',  # py3 compat
     'pytest',  # includes virtualenv
     'pytest-cov',
-    ]
+]
 
 dev_require = [
     'github3.py',
@@ -70,5 +71,6 @@ setup(name='pymotion',
       [console_scripts]
       initialize_pymotion_db = pymotion.scripts.initializedb:main
       initialize_pymotion = pymotion.scripts.get_ng_build:create_ng_build_folder
+      pymotion_detection = pymotion.detection.process:main
       """,
       )
