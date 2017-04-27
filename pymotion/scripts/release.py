@@ -6,7 +6,6 @@ import requests
 import shutil
 import zipfile
 
-from . import github
 from pymotion import __version__
 
 
