@@ -14,9 +14,9 @@ class Camera(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(255), nullable=False)
-    src = Column(String(255), nullable=False)
+    src = Column(Integer, nullable=False)
     host = Column(String(255), nullable=False)
-    port = Column(String(255), nullable=False)
+    port = Column(Integer, nullable=False)
     public_url = Column(String(255), nullable=True)
 
     enabled = Column(Boolean, nullable=False, default=True)
@@ -26,4 +26,4 @@ class Camera(Base):
     def get_url(self):
         if self.public_url:
             return self.public_url
-        return '%s:%s' % (self.host, self.port)
+        return '//%s:%s' % (self.host, self.port)
