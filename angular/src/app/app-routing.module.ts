@@ -16,10 +16,13 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    // Be sure gapi is loaded
+    canActivate: [AuthGuard],
   },
   {
     path: 'admin/users',
     component: UsersComponent,
+    canActivate: [AuthGuard],
   },
 ];
 

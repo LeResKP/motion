@@ -30,6 +30,8 @@ def includeme(config):
     config.add_static_view('static', 'static', cache_max_age=3600)
     config.add_route('home', '/')
     config.add_route('auth_login', '/api/auth/login')
+    config.add_route('auth_logout', '/api/auth/logout')
+    config.add_route('keys', '/api/keys')
     config.add_route('cams', '/api/cams')
     config.add_route('cams_stream', '/api/cams/{id}/stream')
     config.add_route('cams_id', '/api/cams/{id}',

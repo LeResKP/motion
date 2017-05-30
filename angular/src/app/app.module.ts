@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { GoogleAuth2Service } from './google-auth2.service';
+import { KeyService } from './key.service';
 
 import { HttpInterceptorFactory } from './http';
 
@@ -36,6 +37,7 @@ import { HttpInterceptorFactory } from './http';
     AuthGuard,
     AuthService,
     GoogleAuth2Service,
+    KeyService,
     {
       provide: Http,
       useFactory: HttpInterceptorFactory,

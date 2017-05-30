@@ -17,6 +17,10 @@
       <md-icon>perm_identity</md-icon>
       <span>Users</span>
     </button>
+    <button md-menu-item (click)="signOut()" *ngIf="authService.loggedInUser">
+      <md-icon>notifications_none</md-icon>
+      <span>Sign out</span>
+    </button>
   </md-menu>
 </md-toolbar>
 

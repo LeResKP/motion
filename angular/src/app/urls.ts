@@ -1,6 +1,9 @@
 const BASE_HREF: string = document.querySelector('base[href]').getAttribute('href');
 
 export const API_URLS = {
+  keys: {
+    info: BASE_HREF + 'api/keys',
+  },
   cams: {
     info: BASE_HREF + 'api/cams',
     id: BASE_HREF + 'api/cams/{cameraId}',
@@ -13,13 +16,15 @@ export const API_URLS = {
     id: BASE_HREF + 'api/users/{userId}',
   },
   auth: {
-    login: BASE_HREF + 'api/auth/login'
-  }
+    login: BASE_HREF + 'api/auth/login',
+    logout: BASE_HREF + 'api/auth/logout',
+  },
 };
 
 
 export const URLS = {
   'dashboard': '/',
+  'login': '/login',
   'admin': {
     'users': '/admin/users'
   }
