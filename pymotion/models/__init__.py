@@ -8,6 +8,7 @@ import zope.sqlalchemy
 from .mymodel import MyModel  # noqa
 from .user import User  # noqa
 from .camera import Camera  # noqa
+from .notification import Notification  # noqa
 
 # run configure_mappers after defining all of the models to ensure
 # all relationships can be setup

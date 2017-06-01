@@ -41,6 +41,8 @@ def includeme(config):
     config.add_route('users_id', '/api/users/{id}',
                      custom_predicates=[exist_user])
 
+    config.add_route('notification', '/api/notification')
+
     config.add_route(
         'cams_enable', '/api/cams/{id}/enable/{value}',
         custom_predicates=(any_of('value', '0', '1'), exist_camera))

@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { CameraModule } from './camera/camera.module';
 import { UserModule } from './user/user.module';
+import { NotificationModule } from './notification/notification.module';
 
 import { AppComponent }  from './app.component';
 import { DashboardComponent }  from './dashboard.component';
@@ -18,6 +19,7 @@ import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { GoogleAuth2Service } from './google-auth2.service';
 import { KeyService } from './key.service';
+import { WorkerService } from './notification/worker.service';
 
 import { HttpInterceptorFactory } from './http';
 
@@ -30,6 +32,7 @@ import { HttpInterceptorFactory } from './http';
 
     CameraModule,
     UserModule,
+    NotificationModule,
     ConfirmModule,
     AppRoutingModule,
   ],
@@ -38,6 +41,7 @@ import { HttpInterceptorFactory } from './http';
     AuthService,
     GoogleAuth2Service,
     KeyService,
+    WorkerService,
     {
       provide: Http,
       useFactory: HttpInterceptorFactory,

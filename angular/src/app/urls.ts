@@ -19,6 +19,7 @@ export const API_URLS = {
     login: BASE_HREF + 'api/auth/login',
     logout: BASE_HREF + 'api/auth/logout',
   },
+  notification: BASE_HREF + 'api/notification',
 };
 
 

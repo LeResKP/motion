@@ -31,6 +31,8 @@ class KeysView(object):
         return {
             'google_oauth2_client_id': self.request.registry.settings[
                 'google_oauth2_client_id'],
+            'vapid_public_key': self.request.registry.settings[
+                'vapid_public_key']
         }
 
 

@@ -30,6 +30,7 @@ requires = [
     'deform',
     'google-api-python-client',
     'requests',
+    # opencv dependency
     'imutils',
 ]
 
