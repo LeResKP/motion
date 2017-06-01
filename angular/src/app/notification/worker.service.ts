@@ -5,20 +5,40 @@ import { API_URLS } from '../urls';
 import { KeyService } from '../key.service';
 
 
+enum NotificationStatus {
+    BLOCKED,
+    SUBSCRIBED,
+    NOT_SUBSCRIBED,
+};
+
+
 @Injectable()
 export class WorkerService {
 
+  public readonly state = NotificationStatus;
   private headers = new Headers({'Content-Type': 'application/json'});
   public supported: boolean;
   public isSubscribed: boolean;
-  swRegistration: any;
+  private swRegistration: any;
 
   constructor(private http: Http, private keyService: KeyService) { }
 
 
-  public isBlocked(): boolean {
+  private isBlocked(): boolean {
     return (window['Notification'].permission === 'denied');
   };
+
+  public getState(): number {
+    if (this.isBlocked()) {
+      return this.state.BLOCKED;
+    }
+
+    if (this.isSubscribed) {
+      return this.state.SUBSCRIBED;
+    }
+
+    return this.state.NOT_SUBSCRIBED;
+  }
 
   register() {
     const that = this;
@@ -82,7 +102,7 @@ export class WorkerService {
   subscribeUser() {
     const that = this;
 
-    this.keyService.getKeys().then((keys: any) => {
+    return this.keyService.getKeys().then((keys: any) => {
       const applicationServerKey = this.urlB64ToUint8Array(keys.vapid_public_key);
       this.swRegistration.pushManager.subscribe({
         userVisibleOnly: true,
@@ -93,16 +113,17 @@ export class WorkerService {
         that.updateSubscriptionOnServer(subscription);
 
         that.isSubscribed = true;
+        return true;
       })
       .catch(function(err: any) {
-        // TODO
+        return false;
       });
     });
   }
 
   unsubscribeUser() {
     const that = this;
-    this.swRegistration.pushManager.getSubscription()
+    return this.swRegistration.pushManager.getSubscription()
     .then(function(subscription: any) {
       if (subscription) {
         return subscription.unsubscribe();
@@ -110,10 +131,12 @@ export class WorkerService {
     })
     .catch(function(error: any) {
       // TODO
+      return false;
     })
     .then(function() {
       that.updateSubscriptionOnServer(null);
       that.isSubscribed = false;
+      return true;
     });
   }
 

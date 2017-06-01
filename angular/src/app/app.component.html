@@ -18,12 +18,22 @@
       <span>Users</span>
     </button>
     <button md-menu-item (click)="notificationModal()">
-      <md-icon>notifications_none</md-icon>
+      <md-icon [ngSwitch]="workerService.getState()">
+        <ng-container *ngSwitchCase="workerService.state.BLOCKED">
+          notifications_none
+        </ng-container>
+        <ng-container *ngSwitchCase="workerService.state.NOT_SUBSCRIBED">
+          notifications_off
+        </ng-container>
+        <ng-container *ngSwitchCase="workerService.state.SUBSCRIBED">
+          notifications_active
+        </ng-container>
+      </md-icon>
       <span>Notification</span>
     </button>
 
     <button md-menu-item (click)="signOut()" *ngIf="authService.loggedInUser">
-      <md-icon>notifications_none</md-icon>
+      <md-icon>exit_to_app</md-icon>
       <span>Sign out</span>
     </button>
   </md-menu>
