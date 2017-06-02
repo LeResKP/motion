@@ -22,6 +22,7 @@ export class AuthService {
 
   public loggedInUser: User = null;
   public redirectUrl: string;
+  private _adminViewEnabled: boolean = null;
 
   constructor(private http: Http) {}
 
@@ -37,5 +38,37 @@ export class AuthService {
 
   logout(): void {
     this.loggedInUser = null;
+  }
+
+  adminViewEnabled() {
+    if (!this.loggedInUser.is_admin) {
+      return false;
+    }
+    if (this._adminViewEnabled !== null) {
+      return this._adminViewEnabled;
+    }
+
+    const value = localStorage.getItem('admin_view_enabled');
+    if (value === null) {
+      this._adminViewEnabled = false;
+      localStorage.setItem('admin_view_enabled', 'false');
+    } else if (value === 'false') {
+      this._adminViewEnabled = false;
+    } else {
+      this._adminViewEnabled = true;
+    }
+    return this._adminViewEnabled;
+  }
+
+  toggleAdminView() {
+    if (!this.loggedInUser.is_admin) {
+      return false;
+    }
+    // Make sure it's initialized.
+    // TODO: nicer way
+    this.adminViewEnabled();
+
+    this._adminViewEnabled = !this._adminViewEnabled;
+    localStorage.setItem('admin_view_enabled', this._adminViewEnabled.toString());
   }
 }

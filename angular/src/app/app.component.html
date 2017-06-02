@@ -9,6 +9,13 @@
       <md-icon>refresh</md-icon>
       <span>Refresh</span>
     </button>
+    <button md-menu-item (click)="authService.toggleAdminView()" *ngIf="authService.loggedInUser?.is_admin">
+      <md-icon [ngSwitch]="authService.adminViewEnabled()">
+        <ng-container *ngSwitchCase="true">visibility</ng-container>
+        <ng-container *ngSwitchCase="false">visibility_off</ng-container>
+      </md-icon>
+      <span>Admin view</span>
+    </button>
     <button md-menu-item (click)="addCamera()" *ngIf="authService.loggedInUser?.is_admin">
       <md-icon>add</md-icon>
       <span>Add new camera</span>
