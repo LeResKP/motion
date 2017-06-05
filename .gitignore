@@ -90,6 +90,3 @@ ENV/
 
 # sqlite file
 pymotion.sqlite
-
-# google API secret
-client_secret_motion.json

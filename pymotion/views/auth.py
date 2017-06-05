@@ -59,8 +59,7 @@ class AuthView(object):
     def post(self):
         token = self.request.json_body['token']
 
-        CLIENT_ID = json.load(open(self.request.registry.settings[
-            'google_oauth2.secret_file'], 'r'))['web']['client_id']
+        CLIENT_ID = self.request.registry.settings['google_oauth2_client_id']
         try:
             idinfo = client.verify_id_token(token, CLIENT_ID)
 
